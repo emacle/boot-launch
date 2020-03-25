@@ -35,6 +35,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- 加入lombok 插件 idea settings plugins 搜索安装 添加依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>
