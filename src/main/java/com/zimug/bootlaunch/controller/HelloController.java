@@ -20,12 +20,12 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String hello() {
-        Article article =  new Article(1L, "zimuge");
+        // Article article =  new Article(1L, "zimuge");
         // 输入 Article 回车，自动引入 import  com.zimug.bootlaunch.model.Article; 包
 
         // return article.getAuthor();
 
-        article.setAuthor("字母哥");  // @Data set,get
+        // article.setAuthor("字母哥");  // @Data set,get
         //  return article.getAuthor();
 
         Article article1 = Article.builder().id(2L).author("莫言").build();
