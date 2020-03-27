@@ -1,2 +1,33 @@
-* [[http://springboot.zimug.com/1315474][手摸手教你学spring boot 2.x(持续更新) - 字母哥]]
 * [[https://www.bilibili.com/video/BV1mt411u7z1?p=8][Bilibili视频教程]]
+  [[http://springboot.zimug.com/1315474][手摸手教你学spring boot 2.x(持续更新) - 字母哥]]
+
+* 3.3 获取自定义配置文件两种注解方法与 数据校验方法
+  - @CONFIGURATIONPROPERTIES  批量注入属性
+    常用 可 配置 JSR303 数据 与 @Validated
+    在需要校验的属性装配类上加上 @Validated
+    JSR303数据校验: @NotEmpty @size , @Max, @Length etc
+  - @VALUE  一个个指定
+
+* 3.5 加载旧项目或外部文件配置的方法
+  - @PropertySource 默认不支持yml, 需要配置
+  - @ImportResource 加载Spring 的 xml文件配置
+
+* 3.6 profile 不同的环境使用不同配置
+  :PROPERTIES:
+  :CREATED:  [2020-03-27 Fri 15:25]
+  :END:
+  
+  resources/
+  application.yml 主文件 里面 spring.profiles.active = dev/prod/test 加载不同的环境配置
+  application-dev.yml
+  application-prod.yml
+  application-test.yml
+
+  : java -jar spring-boot-snapt.0.0.1.jar --spring.profiles.active=prod 
+
+* 3.7 项目内部配置文件加载顺序
+  :PROPERTIES:
+  :CREATED:  [2020-03-27 Fri 15:31]
+  :END:
+
+[[file:d:/Q/360/Emacs/winrc/emacsrc/org/images/README.org_20200327_153347.png][file:d:/Q/360/Emacs/winrc/emacsrc/org/images/README.org_20200327_153347.png]]
