@@ -1,6 +1,12 @@
 * [[https://www.bilibili.com/video/BV1mt411u7z1?p=8][Bilibili视频教程]]
   [[http://springboot.zimug.com/1315474][手摸手教你学spring boot 2.x(持续更新) - 字母哥]]
 
+* idea 插件
+  1. GsonFormat 插件工具可以快速的将JSON转换为实体类
+  2. Maven Helper 可能经常会遇到jar包冲突等问题，就需要通过查看maven依赖树来查看依赖情况
+  3. better-mybatis-generator 快速生成 mybatis 代码
+  4. Key Promoter X 是一个提示插件，当你在IDEA里面使用鼠标的时候，如果这个鼠标操作是能够用快捷键替代的
+
 * 3.3 获取自定义配置文件两种注解方法与 数据校验方法
   - @CONFIGURATIONPROPERTIES  批量注入属性
     常用 可 配置 JSR303 数据 与 @Validated
