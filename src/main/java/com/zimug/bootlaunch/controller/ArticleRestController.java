@@ -17,12 +17,12 @@ import java.util.Date;
 
 @RequestMapping("/rest")
 public class ArticleRestController {
-//
-//    @ApiOperation(value="添加文章", notes="添加新的文章",tags = "Article", httpMethod = "POST")
-//    @ApiResponses({
-//            @ApiResponse(code=200,message="成功",response = AjaxResponse.class),
-//            @ApiResponse(code=400,message="用户输入错误",response = AjaxResponse.class)
-//    })
+
+    @ApiOperation(value="添加文章", notes="添加新的文章",tags = "Article", httpMethod = "POST")
+    @ApiResponses({
+            @ApiResponse(code=200,message="成功",response = AjaxResponse.class),
+            @ApiResponse(code=400,message="用户输入错误",response = AjaxResponse.class)
+    })
 
     // RequestMapping() , 可以简化成  @PostMapping, @GetMapping @PutMapping @DeleteMapping等方法
 
