@@ -2,14 +2,16 @@ package com.zimug.bootlaunch.controller;
 
 import com.zimug.bootlaunch.model.AjaxResponse;
 import com.zimug.bootlaunch.model.Article;
+import com.zimug.bootlaunch.service.ArticleService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @Slf4j
@@ -18,6 +20,11 @@ import java.util.Date;
 @RequestMapping("/rest")
 public class ArticleRestController {
 
+    @Autowired
+    private ArticleService articleService;
+
+
+    // swagger 注释说明
     @ApiOperation(value="添加文章", notes="添加新的文章",tags = "Article", httpMethod = "POST")
     @ApiResponses({
             @ApiResponse(code=200,message="成功",response = AjaxResponse.class),
@@ -60,13 +67,16 @@ public class ArticleRestController {
     public AjaxResponse getArticle(@PathVariable Long id) {
 
         //使用lombok提供的builder构建对象
-        Article article1 = Article.builder()
-                                .id(1L)
-                                .author("zimug")
-                                .content("spring boot 2.深入浅出")
-                                .createTime(new Date())
-                                .title("t1").build();
-        log.info("GetArticle：{}",article1);
-        return AjaxResponse.success(article1);
+//        Article article1 = Article.builder()
+//                                .id(1L)
+//                                .author("zimug")
+//                                .content("spring boot 2.深入浅出")
+//                                .createTime(new Date())
+//                                .title("t1").build();
+//        log.info("GetArticle：{}",article1);
+
+        List<com.zimug.bootlaunch.entity.Article> articleList = articleService.getArticleList();
+
+        return AjaxResponse.success(articleList);
     }
 }
