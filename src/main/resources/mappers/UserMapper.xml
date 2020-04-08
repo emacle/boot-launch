@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zimug.bootlaunch.mapper.UserMapper">
+
+    <insert id="saveUser">
+        INSERT INTO `orm_user` (`name`,
+                                `password`,
+                                `salt`,
+                                `email`,
+                                `phone_number`,
+                                `status`,
+                                `create_time`,
+                                `last_login_time`,
+                                `last_update_time`)
+        VALUES (#{user.name},
+                #{user.password},
+                #{user.salt},
+                #{user.email},
+                #{user.phoneNumber},
+                #{user.status},
+                #{user.createTime},
+                #{user.lastLoginTime},
+                #{user.lastUpdateTime})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE
+        FROM `orm_user`
+        WHERE `id` = #{id}
+    </delete>
+
+
+    <!--   where id = #{user.id} 这里 id 前是 user 对象里的id, 同理 name,password
+    deleteById 传递过来的参数就是数字 id -->
+    <update id="updateUser">
+        update orm_user
+        set `name` = #{user.name},
+          `password` = #{user.password},
+          `email` = #{user.email}
+        where id = #{user.id}
+    </update>
+
+</mapper>
