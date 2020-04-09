@@ -31,12 +31,22 @@
 
 
     <!--   where id = #{user.id} 这里 id 前是 user 对象里的id, 同理 name,password
-    deleteById 传递过来的参数就是数字 id -->
+    deleteById 传递过来的参数就是数字 id
+    注意下边的 create_time, user.createTime不同位置使用不同
+    -->
     <update id="updateUser">
         update orm_user
-        set `name` = #{user.name},
-          `password` = #{user.password},
-          `email` = #{user.email}
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="user.name != null  and user.name != ''">name = #{user.name},</if>
+            <if test="user.password != null  and user.password != ''">password = #{user.password},</if>
+            <if test="user.salt != null  and suser.alt != ''">salt = #{user.salt},</if>
+            <if test="user.email != null  and user.email != ''">email = #{user.email},</if>
+            <if test="user.phoneNumber != null  and user.phoneNumber != ''">phone_number = #{user.phoneNumber},</if>
+            <if test="user.status != null  and user.status != ''">status = #{user.status},</if>
+            <if test="user.createTime != null and user.createTime != ''">create_time = #{user.createTime},</if>
+            <if test="user.lastLoginTime != null and user.lastLoginTime != ''">last_login_time = #{user.lastLoginTime},</if>
+            <if test="user.lastUpdateTime != null and user.lastUpdateTime != ''">last_update_time = #{user.lastUpdateTime},</if>
+        </trim>
         where id = #{user.id}
     </update>
 

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -92,12 +94,16 @@ public class UserRestController {
         // entiy 中的 @Data 注解修改某些值
         user.setEmail("ok@qq.com");
 
+        // Entity类中使用@JsonFormat注解生成 将实例类中的 createTime 转换成字符串类型，
+        // 与Controller 参数类型保持一致，与数据库插入参数一样
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" );
+        user.setCreateTime(sdf.format(new Date())); // 当前日期换成指定格式与数据库保持一致
+
         //因为使用了lombok的Slf4j注解，这里可以直接使用log变量打印日志
         log.info("updateUser： {}", user);
 
         int retVal = userService.updateUser(user); // 返回影响行数
         log.info("retVal： {}", retVal);
-
 
         return AjaxResponse.success(user);
     }

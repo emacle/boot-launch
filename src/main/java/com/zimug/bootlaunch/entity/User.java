@@ -1,5 +1,6 @@
 package com.zimug.bootlaunch.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -66,7 +67,9 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    // 使用@JsonFormat注解生成 将实例类中的 createTime 转换成字符串类型，与Controller 参数类型保持一致
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String createTime;
 
     /**
      * 上次登录时间
