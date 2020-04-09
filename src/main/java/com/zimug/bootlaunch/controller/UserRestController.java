@@ -1,6 +1,7 @@
 package com.zimug.bootlaunch.controller;
 
 import com.zimug.bootlaunch.entity.User;
+import com.zimug.bootlaunch.mapper.UserMapper;
 import com.zimug.bootlaunch.model.AjaxResponse;
 import com.zimug.bootlaunch.service.UserService;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Slf4j
@@ -22,14 +24,25 @@ import java.util.List;
 @RequestMapping("/rest")
 public class UserRestController {
 
+    // 操作数据通用流程：
+    // Controller class -> Service interface -> Service impl class
+    // -> Mapper inteface --> Mapper.xml-> database
+
+    // @Autowired 注解，自动装载 Service inteface
     @Autowired
     private UserService userService;
+
+    // 使用 @Resource 注解 , 在 Controller class 里可直接调用 Mapper interface
+    // 省去写 Service interface 与 Service impl class
+    @Resource
+    private UserMapper userMapper;
 
     // 查所有
     @GetMapping("/users")
     public AjaxResponse getAllUsers() {
-        List<User> article = userService.getUsers();
-        return  AjaxResponse.success(article);
+        // List<User> users = userService.getUsers(); // 通用流程 Controller 调用 Service 接口
+        List<User> users = userMapper.selectAllUser(); // Controller 里直接调用 Mapper 接口
+        return  AjaxResponse.success(users);
     }
 
     // 查指定
